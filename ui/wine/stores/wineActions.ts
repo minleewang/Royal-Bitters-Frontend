@@ -5,7 +5,7 @@ export const wineAction = {
     const { djangoAxiosInstance } = axiosUtility.createAxiosInstances();
 
     try {
-      const res = await djangoAxiosInstance.get("/wine/list", {
+      const res = await djangoAxiosInstance.get("/wine/wine-list", {
         params: { page, perPage },
       });
       console.log("Response Data:", res.data);
@@ -17,13 +17,13 @@ export const wineAction = {
       console.log("requestWineList() 중 에러:", error);
     }
   },
-  async requestCreateWine(imageFormData: FormData): Promise<void> {
-    console.log(`requestCreateWine(): ${imageFormData}`);
+  async requestWineCreate(imageFormData: FormData): Promise<void> {
+    console.log(`requestWineCreate(): ${imageFormData}`);
     const { djangoAxiosInstance } = axiosUtility.createAxiosInstances();
 
     try {
       const res = await djangoAxiosInstance.post(
-        "/wine/create",
+        "/wine/wine-create",
         imageFormData,
         {
           headers: {
@@ -33,18 +33,18 @@ export const wineAction = {
       );
       console.log("Response Data:", res.data);
     } catch (error) {
-      console.log("requestCreateWine() 중 에러:", error);
+      console.log("requestWineCreate() 중 에러:", error);
     }
   },
-  async requestWineById(id: string): Promise<any> {
+  async requestWineRead(id: string): Promise<any> {
     const { djangoAxiosInstance } = axiosUtility.createAxiosInstances();
 
     try {
-      const res = await djangoAxiosInstance.get(`/wine/read/${id}`);
+      const res = await djangoAxiosInstance.get(`/wine/wine-read/${id}`);
       console.log("Response Data:", res.data);
       return res.data;
     } catch (error) {
-      console.log("requestWineById() 중 에러:", error);
+      console.log("requestWineRead() 중 에러:", error);
       throw error;
     }
   },

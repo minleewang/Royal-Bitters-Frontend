@@ -62,8 +62,6 @@ const beerImage = ref(null);
 const uploadedFileName = ref("");
 
 const onSubmit = async () => {
-  console.log("상품 등록 버튼 눌렀음");
-
   try {
     if (beerImage.value) {
       const formData = new FormData();
@@ -72,11 +70,11 @@ const onSubmit = async () => {
       formData.append("beerDescription", beerDescription.value);
       formData.append("beerImage", beerImage.value);
 
-      await beerStore.requestCreateBeer(formData);
+      await beerStore.requestBeerCreate(formData);
 
-      uploadedFileName.value = beer.uploadedFileName;
+      uploadedFileName.value = beerStore.uploadedFileName;
 
-      router.push({ name: "BeerList" });
+      router.push({ name: "Beer" });
     } else {
       console.error("이미지 파일을 선택하세요!");
     }

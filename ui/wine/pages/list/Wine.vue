@@ -6,7 +6,7 @@
       backgroundPosition: 'center',
       backgroundSize: 'cover',
       width: '100%',
-      margin: '0',
+      backgroundRepeat: 'no-repeat',
     }"
   >
     <v-container>

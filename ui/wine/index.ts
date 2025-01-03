@@ -22,6 +22,12 @@ export default defineNuxtModule({
         path: "/wine/register",
         file: resolve(themeDir, "wine/pages/register/Register.vue"),
       });
+
+      pages.push({
+        name: "WineRead",
+        path: "/wine/read/:id",
+        file: resolve(themeDir, "wine/pages/read/Read.vue"),
+      });
     });
 
     nuxt.hook("imports:dirs", (dirs) => {

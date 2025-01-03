@@ -6,7 +6,7 @@
       backgroundPosition: 'center',
       backgroundSize: 'cover',
       width: '100%',
-      margin: '0',
+      backgroundRepeat: 'no-repeat',
     }"
   >
     <v-container>
@@ -59,7 +59,7 @@
             :first-icon="'mdi-chevron-double-left'"
             :last-icon="'mdi-chevron-double-right'"
           />
-          <p>현재 페이지: {{ currentPage }}</p>
+          <p :style="{ color: 'yellow' }">현재 페이지: {{ currentPage }}</p>
         </v-col>
       </v-row>
 

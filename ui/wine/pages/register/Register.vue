@@ -21,7 +21,7 @@
     <v-row>
       <v-col cols="12">
         <v-file-input
-          v-model="whiskyImage"
+          v-model="wineImage"
           label="와인 이미지 파일"
           prepend-icon="mdi-camera"
         />
@@ -65,18 +65,18 @@ const onSubmit = async () => {
   console.log("상품 등록 버튼 눌렀음");
 
   try {
-    if (beerImage.value) {
+    if (wineImage.value) {
       const formData = new FormData();
       formData.append("wineTitle", wineTitle.value);
       formData.append("winePrice", winePrice.value.toString());
       formData.append("wineDescription", wineDescription.value);
       formData.append("wineImage", wineImage.value);
 
-      await wineStore.requestCreateWine(formData);
+      await wineStore.requestWineCreate(formData);
 
-      uploadedFileName.value = wine.uploadedFileName;
+      uploadedFileName.value = wineStore.uploadedFileName;
 
-      router.push({ name: "WineList" });
+      router.push({ name: "Wine" });
     } else {
       console.error("이미지 파일을 선택하세요!");
     }

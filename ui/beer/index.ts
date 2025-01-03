@@ -22,6 +22,12 @@ export default defineNuxtModule({
         path: "/beer/register",
         file: resolve(themeDir, "beer/pages/register/Register.vue"),
       });
+
+      pages.push({
+        name: "BeerRead",
+        path: "/beer/read/:id",
+        file: resolve(themeDir, "beer/pages/read/Read.vue"),
+      });
     });
 
     nuxt.hook("imports:dirs", (dirs) => {

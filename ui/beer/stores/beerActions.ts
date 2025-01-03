@@ -5,7 +5,7 @@ export const beerAction = {
     const { djangoAxiosInstance } = axiosUtility.createAxiosInstances();
 
     try {
-      const res = await djangoAxiosInstance.get("/beer/list", {
+      const res = await djangoAxiosInstance.get("/beer/beer-list", {
         params: { page, perPage },
       });
       console.log("Response Data:", res.data);
@@ -17,13 +17,13 @@ export const beerAction = {
       console.log("requestBeerList() 중 에러:", error);
     }
   },
-  async requestCreateBeer(imageFormData: FormData): Promise<void> {
-    console.log(`requestCreateBeer(): ${imageFormData}`);
+  async requestBeerCreate(imageFormData: FormData): Promise<void> {
+    console.log(`requestBeerCreate(): ${imageFormData}`);
     const { djangoAxiosInstance } = axiosUtility.createAxiosInstances();
 
     try {
       const res = await djangoAxiosInstance.post(
-        "/beer/create",
+        "/beer/beer-create",
         imageFormData,
         {
           headers: {
@@ -33,14 +33,14 @@ export const beerAction = {
       );
       console.log("Response Data:", res.data);
     } catch (error) {
-      console.log("requestCreateBeer() 중 에러:", error);
+      console.log("requestBeerCreate() 중 에러:", error);
     }
   },
   async requestBeerById(id: string): Promise<any> {
     const { djangoAxiosInstance } = axiosUtility.createAxiosInstances();
 
     try {
-      const res = await djangoAxiosInstance.get(`/beer/read/${id}`);
+      const res = await djangoAxiosInstance.get(`/beer/beer-read/${id}`);
       console.log("Response Data:", res.data);
       return res.data;
     } catch (error) {
