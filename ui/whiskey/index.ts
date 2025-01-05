@@ -3,8 +3,8 @@ import { resolve } from "path";
 
 export default defineNuxtModule({
   meta: {
-    name: "whisky",
-    configKey: "whisky",
+    name: "whiskey",
+    configKey: "whiskey",
   },
 
   setup(moduleOptions, nuxt) {
@@ -12,15 +12,15 @@ export default defineNuxtModule({
 
     nuxt.hook("pages:extend", (pages) => {
       pages.push({
-        name: "Whisky",
-        path: "/whisky/list",
-        file: resolve(themeDir, "whisky/pages/list/Whisky.vue"),
+        name: "Whiskey",
+        path: "/whiskey/list",
+        file: resolve(themeDir, "whiskey/pages/list/Whiskey.vue"),
       });
 
       pages.push({
-        name: "WhiskyRegister",
-        path: "/whisky/register",
-        file: resolve(themeDir, "whisky/pages/register/Register.vue"),
+        name: "WhiskeyRegister",
+        path: "/whiskey/register",
+        file: resolve(themeDir, "whiskey/pages/register/Register.vue"),
       });
     });
 

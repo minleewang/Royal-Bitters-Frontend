@@ -10,27 +10,6 @@
       <span>상품보기</span>
     </v-btn>
 
-    <v-app-bar v-if="isBottomBarVisible" app color="secondary" dark>
-      <v-spacer></v-spacer>
-      <v-btn text @click="goToWinePage" class="btn-text">
-        <v-icon left>mdi-glass-wine</v-icon>
-        <span>와인</span>
-      </v-btn>
-      <v-spacer></v-spacer>
-
-      <v-btn text @click="goToWhiskyPage" class="btn-text">
-        <v-icon left>mdi-delete-variant</v-icon>
-        <span>위스키</span>
-      </v-btn>
-      <v-spacer></v-spacer>
-
-      <v-btn text @click="goToBeerPage" class="btn-text">
-        <v-icon left>mdi-glass-mug-variant</v-icon>
-        <span>맥주</span>
-      </v-btn>
-      <v-spacer></v-spacer>
-    </v-app-bar>
-
     <v-btn text @click="goToCart" class="btn-text">
       <v-icon left>mdi-cart-outline</v-icon>
       <span>카트</span>
@@ -51,6 +30,27 @@
         <span>로그아웃</span>
       </v-btn>
     </template>
+
+    <v-app-bar v-if="isBottomBarVisible" app color="secondary" dark>
+      <v-spacer></v-spacer>
+      <v-btn text @click="goToWinePage" class="btn-text">
+        <v-icon left>mdi-glass-wine</v-icon>
+        <span>와인</span>
+      </v-btn>
+      <v-spacer></v-spacer>
+
+      <v-btn text @click="goToWhiskeyPage" class="btn-text">
+        <v-icon left>mdi-delete-variant</v-icon>
+        <span>위스키</span>
+      </v-btn>
+      <v-spacer></v-spacer>
+
+      <v-btn text @click="goToBeerPage" class="btn-text">
+        <v-icon left>mdi-glass-mug-variant</v-icon>
+        <span>맥주</span>
+      </v-btn>
+      <v-spacer></v-spacer>
+    </v-app-bar>
   </v-app-bar>
 </template>
 
@@ -77,8 +77,8 @@ const goToWinePage = () => {
   isBottomBarVisible.value = false;
 };
 
-const goToWhiskyPage = () => {
-  router.push("/whisky/list"); // 게시판 페이지로 연결
+const goToWhiskeyPage = () => {
+  router.push("/whiskey/list"); // 게시판 페이지로 연결
   isBottomBarVisible.value = false;
 };
 

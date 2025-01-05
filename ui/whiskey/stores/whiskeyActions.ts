@@ -1,32 +1,32 @@
 import * as axiosUtility from "../../utility/axiosInstance";
 
-export const whiskyAction = {
-  async requestWhiskyList(
+export const whiskeyAction = {
+  async requestWhiskeyList(
     page: number = 1,
     perPage: number = 8
   ): Promise<void> {
     const { djangoAxiosInstance } = axiosUtility.createAxiosInstances();
 
     try {
-      const res = await djangoAxiosInstance.get("/whisky/list", {
+      const res = await djangoAxiosInstance.get("/whiskey/whiskey-list", {
         params: { page, perPage },
       });
       console.log("Response Data:", res.data);
 
-      this.whiskyList = res.data.dataList;
+      this.whiskeyList = res.data.dataList;
       this.totalPages = res.data.totalPages;
       this.currentPage = page;
     } catch (error) {
-      console.log("requestWhiskyList() 중 에러:", error);
+      console.log("requestWhiskeyList() 중 에러:", error);
     }
   },
-  async requestCreateBeer(imageFormData: FormData): Promise<void> {
-    console.log(`requestCreateWhisky(): ${imageFormData}`);
+  async requestWhiskeyCreate(imageFormData: FormData): Promise<void> {
+    console.log(`requestWhiskeyCreate(): ${imageFormData}`);
     const { djangoAxiosInstance } = axiosUtility.createAxiosInstances();
 
     try {
       const res = await djangoAxiosInstance.post(
-        "/whiksy/create",
+        "/whiskey/whiskey-create",
         imageFormData,
         {
           headers: {
@@ -36,18 +36,18 @@ export const whiskyAction = {
       );
       console.log("Response Data:", res.data);
     } catch (error) {
-      console.log("requestCreateWhisky() 중 에러:", error);
+      console.log("requestWhiskeyCreate() 중 에러:", error);
     }
   },
-  async requestWhiskyById(id: string): Promise<any> {
+  async requestWhiskeyById(id: string): Promise<any> {
     const { djangoAxiosInstance } = axiosUtility.createAxiosInstances();
 
     try {
-      const res = await djangoAxiosInstance.get(`/whisky/read/${id}`);
+      const res = await djangoAxiosInstance.get(`/whiskey/whiskey-read/${id}`);
       console.log("Response Data:", res.data);
       return res.data;
     } catch (error) {
-      console.log("requestWhiskyById() 중 에러:", error);
+      console.log("requestWhiskeyById() 중 에러:", error);
       throw error;
     }
   },

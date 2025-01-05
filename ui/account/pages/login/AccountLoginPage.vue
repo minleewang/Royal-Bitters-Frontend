@@ -9,7 +9,6 @@
       height: '100vh',
     }"
   >
-    <h2>LOGIN</h2>
     <v-row justify="center" align="center" class="fill-height ma-0">
       <v-col cols="12" sm="8" md="6" class="text-center">
         <v-btn class="kakao-login-btn" @click="goToKakaoLogin" block>
