@@ -2,26 +2,30 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <v-text-field v-model="whiskyTitle" label="위스키 이름" />
+        <v-text-field v-model="whiskeyTitle" label="위스키 이름" />
       </v-col>
     </v-row>
 
     <v-row>
       <v-col cols="12">
-        <v-text-field v-model="whiskyPrice" label="가격" type="number" />
+        <v-text-field v-model="whiskeyPrice" label="가격" type="number" />
       </v-col>
     </v-row>
 
     <v-row>
       <v-col cols="12">
-        <v-textarea v-model="whiskyDescription" label="위스키 정보" auto-grow />
+        <v-textarea
+          v-model="whiskeyDescription"
+          label="위스키 정보"
+          auto-grow
+        />
       </v-col>
     </v-row>
 
     <v-row>
       <v-col cols="12">
         <v-file-input
-          v-model="whiskyImage"
+          v-model="whiskeyImage"
           label="위스키 이미지 파일"
           prepend-icon="mdi-camera"
         />
@@ -45,38 +49,38 @@
 
 <script setup>
 definePageMeta({
-  name: "WhiskyRegisterPage",
+  name: "WhiskeyRegisterPage",
 });
 
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { useWhiskyStore } from "../../stores/whiskyStore";
+import { useWhiskeyStore } from "../../stores/whiskeyStore";
 
 const router = useRouter();
-const whiskyStore = useWhiskyStore();
+const whiskeyStore = useWhiskeyStore();
 
-const whiskyTitle = ref("");
-const whiskyPrice = ref(0);
-const whiskyDescription = ref("");
-const whiskyImage = ref(null);
+const whiskeyTitle = ref("");
+const whiskeyPrice = ref(0);
+const whiskeyDescription = ref("");
+const whiskeyImage = ref(null);
 const uploadedFileName = ref("");
 
 const onSubmit = async () => {
   console.log("상품 등록 버튼 눌렀음");
 
   try {
-    if (beerImage.value) {
+    if (whiskeyImage.value) {
       const formData = new FormData();
-      formData.append("whiskyTitle", whiskyTitle.value);
-      formData.append("whiskyPrice", whiskyPrice.value.toString());
-      formData.append("whiskyDescription", whiskyDescription.value);
-      formData.append("whiskyImage", whiskyImage.value);
+      formData.append("whiskeyTitle", whiskeyTitle.value);
+      formData.append("whiskeyPrice", whiskeyPrice.value.toString());
+      formData.append("whiskeyDescription", whiskeyDescription.value);
+      formData.append("whiskeyImage", whiskeyImage.value);
 
-      await whiskyStore.requestCreateWhisky(formData);
+      await whiskeyStore.requestWhiskeyCreate(formData);
 
-      uploadedFileName.value = whisky.uploadedFileName;
+      uploadedFileName.value = whiskeyStore.uploadedFileName;
 
-      router.push({ name: "WhiskyList" });
+      router.push({ name: "Whiskey" });
     } else {
       console.error("이미지 파일을 선택하세요!");
     }

@@ -2,7 +2,7 @@
   <div
     class="pa-0"
     :style="{
-      backgroundImage: `url(${whiskyImage})`,
+      backgroundImage: `url(${whiskeyImage})`,
       backgroundPosition: 'center',
       backgroundSize: 'cover',
       width: '100%',
@@ -10,19 +10,19 @@
     }"
   >
     <v-container>
-      <h2 :style="{ color: 'gold' }">Whisky Chart</h2>
+      <h2 :style="{ color: 'gold' }">Whiskey Chart</h2>
 
       <!-- 상품 등록 링크 -->
       <div style="text-align: left; margin: 15px">
-        <NuxtLink :to="{ name: 'WhiskyRegisterPage' }">위스키 등록</NuxtLink>
+        <NuxtLink :to="{ name: 'WhiskeyRegisterPage' }">위스키 등록</NuxtLink>
       </div>
 
       <!-- 상품 목록 -->
-      <v-row v-if="whiskyList.length > 0">
-        <v-col v-for="(whisky, index) in whiskyList" :key="index" sm="3">
-          <v-card @click="goToWhiskyReadPage(whisky.id)">
+      <v-row v-if="whiskeyList.length > 0">
+        <v-col v-for="(whiskey, index) in whiskeyList" :key="index" sm="3">
+          <v-card @click="goToWhiskeyReadPage(whiskey.id)">
             <v-img
-              :src="getWhiskyImageUrl(whisky.image)"
+              :src="getWhiskeyImageUrl(whiskey.image)"
               aspect-ratio="1"
               class="grey lighten-2"
             >
@@ -34,9 +34,9 @@
               </template>
             </v-img>
             <!-- 위스키 타이틀 이름 -->
-            <v-card-title>{{ whisky.title }}</v-card-title>
+            <v-card-title>{{ whiskey.title }}</v-card-title>
             <!-- 가격 정보 -->
-            <v-card-subtitle>{{ whisky.price }}</v-card-subtitle>
+            <v-card-subtitle>{{ whiskey.price }}</v-card-subtitle>
           </v-card>
         </v-col>
       </v-row>
@@ -82,15 +82,15 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from "vue";
-import { useWhiskyStore } from "../../stores/whiskyStore";
+import { useWhiskeyStore } from "../../stores/whiskeyStore";
 import { useRouter } from "vue-router";
 import { resolve } from "path";
-import whiskyImage from "@/assets/images/fixed/whiskyBackGround.jpg";
+import whiskeyImage from "@/assets/images/fixed/whiskeyBackGround.jpg";
 
-const whiskyStore = useWhiskyStore();
-const whiskyList = computed(() => whiskyStore.whiskyList);
+const whiskeyStore = useWhiskeyStore();
+const whiskeyList = computed(() => whiskeyStore.whiskeyList);
 
-const totalPages = computed(() => whiskyStore.totalPages);
+const totalPages = computed(() => whiskeyStore.totalPages);
 const currentPage = ref(1);
 const perPage = 8;
 
@@ -110,7 +110,7 @@ for (const [key, value] of Object.entries(images)) {
   console.log(`Value:`, value);
 }
 
-const getWhiskyImageUrl = (imageName: string) => {
+const getWhiskeyImageUrl = (imageName: string) => {
   console.log(`imageName: ${imageName}`);
   console.log(`images[\`@/assets/images/uploadImages/${imageName}\`]`);
   console.log(`images: ${images}`);
@@ -126,20 +126,20 @@ const getWhiskyImageUrl = (imageName: string) => {
 };
 
 // 상품 상세 페이지로 이동하는 함수
-const goToWhiskyReadPage = (id: string) => {
+const goToWhiskeyReadPage = (id: string) => {
   router.push({
-    name: "WhiskyRead",
+    name: "WhiskeyRead",
     params: { id },
   });
 };
 
 watch(currentPage, (newPage) => {
-  whiskyStore.requestWhiskyList(newPage, perPage);
+  whiskeyStore.requestWhiskeyList(newPage, perPage);
 });
 
 // 컴포넌트 마운트 시 상품 목록 요청
 onMounted(() => {
-  whiskyStore.requestWhiskyList();
+  whiskeyStore.requestWhiskeyList();
 });
 </script>
 

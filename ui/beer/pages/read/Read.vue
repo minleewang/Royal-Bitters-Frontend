@@ -152,15 +152,25 @@ const onAddToCart = async () => {
 };
 
 onMounted(async () => {
-  const { id } = route.params;
+  try {
+    const { id } = route.params;
 
-  const beer = await beerStore.requestBeerById(id as string);
-  if (beer) {
-    beer.value = beer;
-    console.log("Retrieved beer image:", beer.value.image);
-    console.log("Retrieved beer image:", beer.value.id);
+    if (!id) {
+      throw new Error("ID is not provided.");
+    }
+
+    const fetchedBeer = await beerStore.requestBeerById(id as string);
+
+    if (fetchedBeer) {
+      beer.value = fetchedBeer;
+    } else {
+      console.error("Beer not found for ID:", id);
+    }
+  } catch (error) {
+    console.error("Failed to fetch beer:", error);
+  } finally {
+    isLoading.value = false;
   }
-  isLoading.value = false;
 });
 </script>
 

@@ -12,7 +12,7 @@
       <v-col cols="12">
         <!-- 이미지 표시 -->
         <v-img
-          :src="getWineImageUrl(wine.image)"
+          :src="getWhiskeyImageUrl(whiskey.image)"
           aspect-ratio="1"
           class="grey lighten-2"
         >
@@ -31,13 +31,17 @@
             <v-container>
               <v-row>
                 <v-col cols="12">
-                  <v-text-field v-model="wine.title" readonly label="상품명" />
+                  <v-text-field
+                    v-model="whiskey.title"
+                    readonly
+                    label="상품명"
+                  />
                 </v-col>
               </v-row>
               <v-row>
                 <v-col cols="12">
                   <v-text-field
-                    v-model="wine.description"
+                    v-model="whiskey.description"
                     readonly
                     label="상품 설명"
                   />
@@ -46,7 +50,7 @@
               <v-row>
                 <v-col cols="12">
                   <v-text-field
-                    v-model="wine.price"
+                    v-model="whiskey.price"
                     readonly
                     label="가격"
                     type="number"
@@ -76,7 +80,7 @@
           <span class="button-text">장바구니에 추가</span>
         </v-btn>
         <!-- 목록으로 돌아가기 -->
-        <NuxtLink to="/wine/list" class="router-link no-underline">
+        <NuxtLink to="/whiskey/list" class="router-link no-underline">
           <v-btn color="secondary" class="action-button" style="float: right">
             <v-icon>mdi-arrow-left</v-icon>
             <span class="button-text">목록으로 돌아가기</span>
@@ -91,21 +95,21 @@
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useCartStore } from "~/cart/stores/cartStore";
-import { useWineStore } from "../../stores/wineStore";
+import { useWhiskeyStore } from "../../stores/whiskeyStore";
 
 interface ImageModule {
   default: string;
 }
 
-const wineStore = useWineStore();
+const whiskeyStore = useWhiskeyStore();
 const cartStore = useCartStore();
 
 const route = useRoute();
-const wineId = route.params.id;
-console.log(`현재 읽은 id: ${wineId}`);
+const whiskeyId = route.params.id;
+console.log(`현재 읽은 id: ${whiskeyId}`);
 
 const isLoading = ref(true);
-const wine = ref({
+const whiskey = ref({
   id: "",
   title: "",
   price: "",
@@ -117,7 +121,7 @@ const images = import.meta.glob("@/assets/images/uploadImages/*", {
   eager: true,
 }) as Record<string, ImageModule>;
 
-const getWineImageUrl = (imageName: string) => {
+const getWhiskeyImageUrl = (imageName: string) => {
   console.log(`imageName: ${imageName}`);
   const imagePathKey = `/assets/images/uploadImages/${imageName}`;
   console.log("Generated image path key:", imagePathKey);
@@ -128,11 +132,11 @@ const getWineImageUrl = (imageName: string) => {
 const router = useRouter();
 
 const onAddToCart = async () => {
-  if (wine.value) {
+  if (whiskey.value) {
     const userToken = localStorage.getItem("userToken") || "";
 
     const requestForm = {
-      id: Number(wine.value.id),
+      id: Number(whiskey.value.id),
       userToken: userToken,
       quantity: 1,
     };
@@ -159,10 +163,10 @@ onMounted(async () => {
       throw new Error("ID is not provided.");
     }
 
-    const fetchedWine = await wineStore.requestWineById(id as string);
+    const fetchedWhiskey = await whiskeyStore.requestWhiskeyById(id as string);
 
-    if (fetchedWine) {
-      wine.value = fetchedWine;
+    if (fetchedWhiskey) {
+      whiskey.value = fetchedWhiskey;
     } else {
       console.error("Wine not found for ID:", id);
     }
