@@ -22,6 +22,12 @@ export default defineNuxtModule({
         path: "/whiskey/register",
         file: resolve(themeDir, "whiskey/pages/register/Register.vue"),
       });
+
+      pages.push({
+        name: "WhiskeyRead",
+        path: "/whiskey/read/:id",
+        file: resolve(themeDir, "whiskey/pages/read/Read.vue"),
+      });
     });
 
     nuxt.hook("imports:dirs", (dirs) => {

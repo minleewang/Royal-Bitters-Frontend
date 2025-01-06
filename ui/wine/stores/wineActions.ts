@@ -36,7 +36,7 @@ export const wineAction = {
       console.log("requestWineCreate() 중 에러:", error);
     }
   },
-  async requestWineRead(id: string): Promise<any> {
+  async requestWineById(id: string): Promise<any> {
     const { djangoAxiosInstance } = axiosUtility.createAxiosInstances();
 
     try {

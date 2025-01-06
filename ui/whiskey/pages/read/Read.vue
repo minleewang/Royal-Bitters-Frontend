@@ -156,15 +156,25 @@ const onAddToCart = async () => {
 };
 
 onMounted(async () => {
-  const { id } = route.params;
+  try {
+    const { id } = route.params;
 
-  const whiskey = await whiskeyStore.requestWhiskeyById(id as string);
-  if (whiskey) {
-    whiskey.value = whiskey;
-    console.log("Retrieved whiskey image:", whiskey.value.image);
-    console.log("Retrieved whiskey image:", whiskey.value.id);
+    if (!id) {
+      throw new Error("ID is not provided.");
+    }
+
+    const fetchedWhiskey = await whiskeyStore.requestWhiskeyById(id as string);
+
+    if (fetchedWhiskey) {
+      whiskey.value = fetchedWhiskey;
+    } else {
+      console.error("Wine not found for ID:", id);
+    }
+  } catch (error) {
+    console.error("Failed to fetch wine:", error);
+  } finally {
+    isLoading.value = false;
   }
-  isLoading.value = false;
 });
 </script>
 

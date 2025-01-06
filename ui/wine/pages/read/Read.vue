@@ -152,13 +152,25 @@ const onAddToCart = async () => {
 };
 
 onMounted(async () => {
-  const { id } = route.params;
+  try {
+    const { id } = route.params;
 
-  const wine = await wineStore.requestWineRead(id as string);
-  if (wine) {
-    wine.value = wine;
+    if (!id) {
+      throw new Error("ID is not provided.");
+    }
+
+    const fetchedWine = await wineStore.requestWineById(id as string);
+
+    if (fetchedWine) {
+      wine.value = fetchedWine;
+    } else {
+      console.error("Wine not found for ID:", id);
+    }
+  } catch (error) {
+    console.error("Failed to fetch wine:", error);
+  } finally {
+    isLoading.value = false;
   }
-  isLoading.value = false;
 });
 </script>
 
