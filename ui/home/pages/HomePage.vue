@@ -30,7 +30,7 @@
           v-for="(item, index) in randomItems"
           :key="index"
           cols="12"
-          sm="6"
+          sm="3"
           md="3"
         >
           <v-card>
