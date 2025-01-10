@@ -66,6 +66,7 @@
           <v-icon>mdi-cart</v-icon>
           <span class="button-text">구매하기</span>
         </v-btn>
+
         <v-btn
           color="success"
           @click="onAddToCart"
@@ -163,6 +164,7 @@ onMounted(async () => {
 
     if (fetchedBeer) {
       beer.value = fetchedBeer;
+      console.log("Beer image:", beer.value.image);
     } else {
       console.error("Beer not found for ID:", id);
     }

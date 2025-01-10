@@ -51,6 +51,7 @@
       <v-row>
         <v-col cols="12" class="text-center">
           <v-pagination
+            :style="{ color: 'yellow' }"
             v-model="currentPage"
             :length="totalPages"
             :total-visible="5"
@@ -117,7 +118,6 @@ const getBeerImageUrl = (imageName: string) => {
   const imagePathKey = `/assets/images/uploadImages/${imageName}`;
   console.log(`imagePathKey: ${imagePathKey}`);
   const imagePath = images[imagePathKey];
-  console.log(`imagePath: ${imagePath.default}`);
 
   if (imagePath) {
     return imagePath.default;
