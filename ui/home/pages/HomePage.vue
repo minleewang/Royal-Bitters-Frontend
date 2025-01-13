@@ -178,7 +178,7 @@ const wineProducts = [
   },
   {
     id: 4,
-    name: "소노마 '에스테이트' 카베르네 소비뇽",
+    name: "소노마 이스테이트 카베르네 소비뇽",
     price: 85000,
     image:
       images["/assets/images/uploadImages/carbernet.jpg"]?.default ||
