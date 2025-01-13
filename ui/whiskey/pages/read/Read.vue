@@ -40,10 +40,12 @@
               </v-row>
               <v-row>
                 <v-col cols="12">
-                  <v-text-field
+                  <v-textarea
                     v-model="whiskey.description"
                     readonly
                     label="상품 설명"
+                    auto-grow
+                    rows="3"
                   />
                 </v-col>
               </v-row>
@@ -79,6 +81,7 @@
           <v-icon>mdi-cart-plus</v-icon>
           <span class="button-text">장바구니에 추가</span>
         </v-btn>
+
         <!-- 목록으로 돌아가기 -->
         <NuxtLink to="/whiskey/list" class="router-link no-underline">
           <v-btn color="secondary" class="action-button" style="float: right">

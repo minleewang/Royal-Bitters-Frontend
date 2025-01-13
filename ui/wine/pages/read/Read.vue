@@ -36,10 +36,12 @@
               </v-row>
               <v-row>
                 <v-col cols="12">
-                  <v-text-field
+                  <v-textarea
                     v-model="wine.description"
                     readonly
                     label="상품 설명"
+                    auto-grow
+                    rows="3"
                   />
                 </v-col>
               </v-row>
@@ -66,6 +68,7 @@
           <v-icon>mdi-cart</v-icon>
           <span class="button-text">구매하기</span>
         </v-btn>
+
         <v-btn
           color="success"
           @click="onAddToCart"
@@ -163,6 +166,7 @@ onMounted(async () => {
 
     if (fetchedWine) {
       wine.value = fetchedWine;
+      console.log("Wine image:", wine.value.image);
     } else {
       console.error("Wine not found for ID:", id);
     }
