@@ -51,6 +51,7 @@
       <v-row>
         <v-col cols="12" class="text-center">
           <v-pagination
+            :style="{ color: 'yellow' }"
             v-model="currentPage"
             :length="totalPages"
             :total-visible="5"
@@ -59,7 +60,7 @@
             :first-icon="'mdi-chevron-double-left'"
             :last-icon="'mdi-chevron-double-right'"
           />
-          <p>현재 페이지: {{ currentPage }}</p>
+          <p :style="{ color: 'yellow' }">현재 페이지: {{ currentPage }}</p>
         </v-col>
       </v-row>
 

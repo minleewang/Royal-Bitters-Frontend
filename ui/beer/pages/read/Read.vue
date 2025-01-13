@@ -36,10 +36,12 @@
               </v-row>
               <v-row>
                 <v-col cols="12">
-                  <v-text-field
+                  <v-textarea
                     v-model="beer.description"
                     readonly
                     label="상품 설명"
+                    auto-grow
+                    rows="3"
                   />
                 </v-col>
               </v-row>
