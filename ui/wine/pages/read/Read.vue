@@ -77,6 +77,25 @@
         >
           <v-icon>mdi-cart-plus</v-icon>
           <span class="button-text">장바구니에 추가</span>
+
+          <v-dialog v-model="isCheckoutDialogVisible" max-width="500">
+            <v-card>
+              <v-card-title>장바구니에 추가</v-card-title>
+              <v-card-text>
+                장바구니에 추가 되었습니다. 확인하시겠습니까?
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn
+                  color="blue darken-1"
+                  text
+                  @click="isCheckoutDialogVisible = false"
+                  >취소</v-btn
+                >
+                <v-btn color="blue darken-1" text @click="goToCart">확인</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
         </v-btn>
         <!-- 목록으로 돌아가기 -->
         <NuxtLink to="/wine/list" class="router-link no-underline">
@@ -102,7 +121,7 @@ interface ImageModule {
 
 const wineStore = useWineStore();
 const cartStore = useCartStore();
-
+const isCheckoutDialogVisible = ref(false);
 const route = useRoute();
 const wineId = route.params.id;
 console.log(`현재 읽은 id: ${wineId}`);
@@ -132,6 +151,29 @@ const router = useRouter();
 
 const onAddToCart = async () => {
   if (wine.value) {
+    isCheckoutDialogVisible.value = true;
+    const userToken = localStorage.getItem("userToken") || "";
+
+    const requestForm = {
+      id: Number(wine.value.id),
+      userToken: userToken,
+      quantity: 1,
+    };
+
+    try {
+      const response = await cartStore.requestCartSave(requestForm);
+      console.log(
+        "장바구니에 아이템을 성공적으로 추가했습니다.",
+        response.data
+      );
+    } catch (error) {
+      console.error("장바구니 추가에 실패했습니다:", error);
+    }
+  }
+};
+
+const onPurchase = async () => {
+  if (wine.value) {
     const userToken = localStorage.getItem("userToken") || "";
 
     const requestForm = {
@@ -152,6 +194,10 @@ const onAddToCart = async () => {
       console.error("장바구니 추가에 실패했습니다:", error);
     }
   }
+};
+
+const goToCart = async () => {
+  router.push("/cart/list");
 };
 
 onMounted(async () => {

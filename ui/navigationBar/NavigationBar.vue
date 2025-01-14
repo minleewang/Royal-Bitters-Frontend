@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app color="black" white>
+  <v-app-bar app color="black" white class="top-app-bar">
     <v-btn @click="goToHome">
       <v-toolbar-title>Drink.alcohol();</v-toolbar-title>
     </v-btn>
@@ -31,7 +31,13 @@
       </v-btn>
     </template>
 
-    <v-app-bar v-if="isBottomBarVisible" app color="secondary" dark>
+    <v-toolbar
+      v-if="isBottomBarVisible"
+      app
+      color="secondary"
+      dark
+      class="bottom-toolbar"
+    >
       <v-spacer></v-spacer>
       <v-btn text @click="goToWinePage" class="btn-text">
         <v-icon left>mdi-glass-wine</v-icon>
@@ -50,7 +56,7 @@
         <span>맥주</span>
       </v-btn>
       <v-spacer></v-spacer>
-    </v-app-bar>
+    </v-toolbar>
   </v-app-bar>
 </template>
 
@@ -69,7 +75,9 @@ const goToHome = () => {
 };
 
 const toggleBottomBar = () => {
+  console.log("Bottom Bar Toggle called", isBottomBarVisible.value); // 상태 로그 확인
   isBottomBarVisible.value = !isBottomBarVisible.value;
+  console.log("New Bottom Bar visibility", isBottomBarVisible.value);
 };
 
 const goToWinePage = () => {
@@ -124,3 +132,27 @@ onMounted(async () => {
   }
 });
 </script>
+
+<style scoped>
+.top-app-bar {
+  z-index: 2; /* 앱 바가 하단 바 위에 오도록 설정 */
+}
+
+/* 하단 바의 위치 조정 */
+.bottom-toolbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1; /* 하단 바가 앱 바 아래에 위치하도록 설정 */
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 앱 바와 하단 바가 겹치지 않게끔 적절한 여백 추가 */
+body {
+  padding-bottom: 56px; /* v-toolbar 높이 만큼 여백을 추가 */
+}
+</style>
