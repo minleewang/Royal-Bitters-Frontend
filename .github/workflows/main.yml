@@ -37,7 +37,7 @@ jobs:
         run: |
           echo "ready for deploy"
 
-          cd /home/ec2-user/nuxt/frontend
+          cd /home/ec2-user/drink_alcohol/nuxt/frontend
           docker-compose down
 
           echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
