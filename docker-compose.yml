@@ -20,7 +20,7 @@ services:
     container_name: frontend-deploy-nginx
     restart: unless-stopped
     volumes:
-      - /home/ec2-user/nuxt/frontend/conf:/etc/ngingx/conf.d
+      - /home/ec2-user/drink_alcohol/nuxt/frontend/conf:/etc/nginx/conf.d
     ports:
       - "80:80"
     networks:
