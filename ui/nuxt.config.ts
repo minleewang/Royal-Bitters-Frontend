@@ -8,11 +8,9 @@ export default defineNuxtConfig({
     "./kakaoAuthentication/nuxt.config.ts",
     "./home/nuxt.config.ts",
     "./wine/nuxt.config.ts",
-    "./whiskey/nuxt.config.ts",
+    "./whisky/nuxt.config.ts",
     "./beer/nuxt.config.ts",
     "./cart/nuxt.config.ts",
-    "./order/nuxt.config.ts",
-    "./payments/nuxt.config.ts",
   ],
 
   css: ["vuetify/styles", "@mdi/font/css/materialdesignicons.min.css"],
@@ -41,11 +39,9 @@ export default defineNuxtConfig({
     "~/account/index.ts",
     "~/kakaoAuthentication/index.ts",
     "~/wine/index.ts",
-    "~/whiskey/index.ts",
+    "~/whisky/index.ts",
     "~/beer/index.ts",
     "~/cart/index.ts",
-    "~/order/index.ts",
-    "~/payments/index.ts",
   ],
 
   imports: {
@@ -56,8 +52,6 @@ export default defineNuxtConfig({
     public: {
       MAIN_API_URL: process.env.VUE_APP_BASE_URL,
       AI_BASE_URL: process.env.VUE_APP_AI_BASE_URL,
-      TOSS_CLIENT_KEY: process.env.TOSS_CLIENT_KEY,
-      TOSS_SECRET_KEY: process.env.TOSS_SECRET_KEY,
     },
   },
 });
