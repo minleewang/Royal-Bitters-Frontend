@@ -1,12 +1,13 @@
+<!--app.vue가 전체를 감싸고 있다-->
 <template>
-  <v-container>
+  <div>
     <v-app>
       <NavigationBar />
       <v-main>
         <NuxtPage />
       </v-main>
     </v-app>
-  </v-container>
+  </div>
 </template>
 
 <script setup></script>
